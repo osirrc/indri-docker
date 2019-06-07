@@ -1,3 +1,18 @@
 # First - Create a .param with the collection location.
 # Second - execute index script with given .param file
+#!/usr/bin/env python3
 
+import argparse
+import json
+import subprocess
+
+print("Indexing ...")
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--json", type=json.loads, required=True, help="the json input")
+
+args, unknown = parser.parse_known_args()
+
+# Iterate over the collections
+for collection in args.json["collections"]:
+    subprocess.run("./index.sh {} {}".format(collection["path"], collection["name"]), shell=True)
