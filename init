@@ -1,16 +1,7 @@
-#!/usr/bin/env python3
-import subprocess
-import os
+RUN wget https://sourceforge.net/projects/lemur/files/lemur/indri-5.13/indri-5.13.tar.gz
+RUN tar -xvzf indri-5.13.tar.gz -C /work
+RUN /work/indri-5.13/configure --prefix=/work/Indri
 
-subprocess.run("wget https://sourceforge.net/projects/lemur/files/lemur/indri-5.13/indri-5.13.tar.gz".split())
-
-os.mkdir("/work/Indri-src")
-
-subprocess.run("tar -xvzf indri-5.13.tar.gz -C /work".split())
-
-os.chdir("/work/indri-5.13/")
-
-#compile Indri
-subprocess.run("./configure --prefix=/work/Indri".split())
-subprocess.run("make")
-subprocess.run("make install".split())
+#for some reason a few files are not created within the indri-5.13 directory
+#and thus the manual copying step
+RUN cd indri-5.13 && cp ../Make* . && make && make install
