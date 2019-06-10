@@ -1,5 +1,3 @@
-# First - Create a .param with the collection location.
-# Second - execute index script with given .param file
 #!/usr/bin/env python3
 
 import argparse
@@ -15,4 +13,4 @@ args, unknown = parser.parse_known_args()
 
 # Iterate over the collections
 for collection in args.json["collections"]:
-    subprocess.run("./index.sh {} {}".format(collection["path"], collection["name"]), shell=True)
+    subprocess.run("/index.sh {} {} {}".format(collection["path"], collection["name"], collection["format"]), shell=True)

@@ -1,7 +1,0 @@
-RUN wget https://sourceforge.net/projects/lemur/files/lemur/indri-5.13/indri-5.13.tar.gz
-RUN tar -xvzf indri-5.13.tar.gz -C /work
-RUN /work/indri-5.13/configure --prefix=/work/Indri
-
-#for some reason a few files are not created within the indri-5.13 directory
-#and thus the manual copying step
-RUN cd indri-5.13 && cp ../Make* . && make && make install
