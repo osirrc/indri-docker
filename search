@@ -6,7 +6,7 @@ import argparse
 import json
 import subprocess
 
-print "(Searching ...)"
+print("Searching ...")
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--json", type=json.loads, required=True, help="the json input")
