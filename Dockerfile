@@ -17,10 +17,15 @@ RUN tar -xvzf indri-5.13.tar.gz -C /work
 RUN /work/indri-5.13/configure --prefix=/work/Indri
 RUN cd /work/indri-5.13 && cp ../Make* . && make && make install
 
-COPY index /index
-COPY index.sh /index.sh
+COPY index /
+COPY index.sh /
+COPY search /
+COPY search.sh /
 
 RUN chmod +x /index
 RUN chmod +x /index.sh
+
+RUN chmod +x /search
+RUN chmod +x /search.sh
 
 #COPY search /

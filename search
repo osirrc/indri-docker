@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+
+#tested for ROBUST04
+
+import argparse
+import json
+import subprocess
+
+print "(Searching ...)"
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--json", type=json.loads, required=True, help="the json input")
+
+args, unknown = parser.parse_known_args()
+
+collection_name = args.json["collection"]["name"]
+topic_path = args.json["topic"]["path"]
+top_k = args.json["top_k"]
+out_file_name = args.json["opts"]["out_file_name"]
+search_rule = args.json["opts"]["rule"]
+topic_type = args.json["opts"]["topic_type"]
+
+subprocess.run("/index.sh {} {} {} {} {} {}".format(collection_name, topic_path, top_k, out_file_name, search_rule, topic_type), shell=True)
