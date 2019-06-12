@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-INDEX=$1;
-TOPICFILE=$2;
-TOPK=$3;
-RESFILE=$4;
-SEARCHRULE=$5;
-TOPICTYPE=$6;
+INDEX=$1
+TOPICFILE=$2
+TOPK=$3
+RESFILE=$4
+SEARCHRULE=$5
+TOPICTYPE=$6
+TOPICFILE_FORMATTED="/work/topics-INDRI"
 
-TOPICFILE_FORMATTED = $2"-INDRI";
 #reformat the topicfile (original TREC format) into one Indri can process
-perl topicFormatting.pl ${TOPICFILE} ${TOPICFILE_FORMATTED} ${TOPICTYPE}
+perl /topicFormatting.pl "${TOPICFILE}" "${TOPICFILE_FORMATTED}" "${TOPICTYPE}"
 
 #parameter file for searching
 touch search.param;
@@ -26,3 +26,5 @@ more search.param
 #start searching
 echo "Processing topic file ..."
 /work/Indri/bin/IndriRunQuery search.param ${TOPICFILE_FORMATTED} >> ${RESFILE}
+echo "Number of lines in the result file ${RESFILE}: "
+wc -l ${RESFILE}

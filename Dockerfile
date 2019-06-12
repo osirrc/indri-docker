@@ -21,6 +21,7 @@ COPY index /
 COPY index.sh /
 COPY search /
 COPY search.sh /
+COPY topicFormatting.pl /
 
 RUN chmod +x /index
 RUN chmod +x /index.sh

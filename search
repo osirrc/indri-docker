@@ -20,4 +20,4 @@ out_file_name = args.json["opts"]["out_file_name"]
 search_rule = args.json["opts"]["rule"]
 topic_type = args.json["opts"]["topic_type"]
 
-subprocess.run("/index.sh {} {} {} {} {} {}".format(collection_name, topic_path, top_k, out_file_name, search_rule, topic_type), shell=True)
+subprocess.run("/search.sh {} {} {} {} {} {}".format(collection_name, topic_path, top_k, out_file_name, search_rule, topic_type), shell=True)
