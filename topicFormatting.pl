@@ -1,20 +1,29 @@
-#perl script to transform a "classic" TREC formatted topic file into one Indri can work with
-#(tested for ROBUST04)
+#TREC topics (tested on Robust04 topics) converted to Indri's file format.
+#TODO: instead of manual XML parsing, use a library.
 
 use strict;
 
+#takes a string and cleans it up
+sub clean { 
+    my $s = shift; 
+    $s  =~ s/[^a-zA-Z0-9]/ /g;  
+    $s = lc($s);  
+    return $s; 
+}
+
 my $numArgs = $#ARGV+ 1;
-if($numArgs < 3 ){
-    print "Three command line arguments expected: [input: TREC formatted topic file] [output: Indri formatted file] [part (title/desc/narr)]\n";
+if($numArgs < 4 ){
+    print "Four command line arguments expected: [input: TREC formatted topic file] [output: Indri formatted file] [part (title/desc/narr)] [retrieval rule]\n";
     exit;
 }
 
 my $infile = $ARGV[0]; #topic file in TREC format
 my $outfile = $ARGV[1]; #topic file in Indri format
 my $topicType = $ARGV[2]; #part of the topic file to consider (encompassing, i.e. choosing desc means title+desc)
+my $retrievalRule = $ARGV[3]; #retrieval rule
 
 if($topicType ne "title" && $topicType ne "desc" && $topicType ne "narr"){
-    print "The last argument is one of title|desc|narr.\n";
+    print "The last argument (now: $topicType) is one of title|desc|narr.\n";
     exit;
 }
 
@@ -32,17 +41,31 @@ while(<IN>){
         $_ =~s/.*Number\s*:\s*//;  
         $_ =~s/\s+//g;
         print OUT "$_</number>\n";
-        print OUT "<text>#combine(";
+
+        print OUT "<text>";
+        if($retrievalRule=~m/(okapi|tfidf)/){
+            ;
+        }
+        else {
+            print OUT "#combine(";
+        }
     }
     elsif($_=~m/<top>/){;}
     elsif($_=~m/<\/top>/){
-        print OUT ")</text>\n</query>\n";
+        if($retrievalRule=~m/(okapi|tfidf)/){
+            ;
+        }
+        else {
+            print OUT ")";
+        }
+        print OUT "</text>\n</query>\n";
         $inType = "";
     }
     elsif($_=~m/<title>/){
         #we always print the title
         $_=~s/<title>\s*//;
-        print OUT "$_ ";
+        print OUT clean($_)." ";
+        $inType = "T";
     }
     elsif($_=~m/<desc>/){
         $inType = "D";
@@ -50,11 +73,14 @@ while(<IN>){
     elsif($_=~m/<narr>/){
         $inType = "N";
     }
+    elsif($inType eq "T"){
+        print OUT clean($_)." ";
+    }
     elsif($inType eq "D" && ($topicType eq "desc" || $topicType eq "narr")){
-        print OUT "$_ ";
+        print OUT clean($_)." ";
     }
     elsif($inType eq "N" && $topicType eq "narr"){
-        print OUT "$_ ";
+        print OUT clean($_)." ";
     }
 }
 

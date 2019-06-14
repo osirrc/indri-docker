@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-#tested for ROBUST04
-
 import argparse
 import json
 import subprocess
@@ -15,4 +13,8 @@ args, unknown = parser.parse_known_args()
 
 # Iterate over the collections
 for collection in args.json["collections"]:
-    subprocess.run("/index.sh {} {} {}".format(collection["path"], collection["name"], collection["format"]), shell=True)
+    name, path = collection["name"], collection["path"]
+    if name.lower() == "robust04":
+        subprocess.run("/indexRobust04.sh {} {} {}".format(collection["path"], collection["name"], collection["format"]), shell=True)
+    else:
+        print("Unknown collection: " + name)

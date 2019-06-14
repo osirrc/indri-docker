@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-#tested for ROBUST04
-
 import argparse
 import json
 import subprocess
@@ -19,5 +17,9 @@ top_k = args.json["top_k"]
 out_file_name = args.json["opts"]["out_file_name"]
 search_rule = args.json["opts"]["rule"]
 topic_type = args.json["opts"]["topic_type"]
+use_prf = args.json["opts"]["use_prf"]
 
-subprocess.run("/search.sh {} {} {} {} {} {}".format(collection_name, topic_path, top_k, out_file_name, search_rule, topic_type), shell=True)
+if collection_name.lower() == "robust04":
+    subprocess.run("/searchRobust04.sh {} {} {} {} {} {} {}".format(collection_name, topic_path, top_k, out_file_name, search_rule, topic_type, use_prf), shell=True)
+else:
+    print("Unknown collection: " + collection_name)
