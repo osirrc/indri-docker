@@ -61,14 +61,11 @@ The `Dockerfile` installs dependencies (`python3`, etc.), copies scripts to the 
 
 ### index
 
-The `index` Python [script](index) (via the `#!/usr/bin/python3` she-bang) reads a JSON string (see [here](https://github.com/osirrc/jig#index)) containing at least one collection to index (including the name, path, and format).
-The collection is indexed and placed in the current working directory (i.e., `/work`).
-At this point, `jig` takes a snapshot and the indexed collections are persisted for the `search` hook.
+The `Robust04` corpus is difficult to handle for Indri: the original version is `.z` compressed, a compression Indri cannot handle. And thus, `indexRobust04.sh` first uncompresses the collection, filters out undesired folders (such as `cr`), downloads Lemur's stopword list, creates a parameter file for indexing and finally calls Indri's `IndriBuildIndex`.
 
 ### search
 
-The `search` [script](search) reads a JSON string (see [here](https://github.com/osirrc/jig#search)) containing the collection name (to map back to the index directory from the `index` hook) and topic path, among other options.
-The retrieval run is performed and output is placed in `/output` for the `jig` to evaluate using `trec_eval`.
+The `Robust04` topics are in "classic" TREC format, a format Indri cannot handle. Thus, first the TREC topic file has to be converted into a format Indri can parse (done in [topicFormatting.pl](topicFormatting.pl)). Note: different retrieval methods require differently formatted Indri topic files. A parameter file is created and finally `IndriRunQuery` is executed.
 
 ## Reviews
 
