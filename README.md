@@ -10,7 +10,9 @@ This image is has been tested with the jig at commit [ e26b16c](https://github.c
 
 ## Quick Start
 
-The following `jig` command can be used to index TREC disks 4/5 for `robust04`:
+First, clone the [`jig`](https://github.com/osirrc/jig) and follow its setup instructions - in particular, do not forget to also clone and install `trec_eval` inside the `jig` directory!
+
+Once that is done, the following `jig` command can be used to index TREC disks 4/5 for `robust04`:
 
 ```
 python3 run.py prepare \
@@ -46,7 +48,7 @@ The following table contains examples of `--opts` and the expected retrieval eff
 |                                                                                                                      | MAP    | P30    |
 |----------------------------------------------------------------------------------------------------------------------|--------|--------|
 | `--opts out_file_name="robust.dir1000.title" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="0"`         | 0.2477 | 0.3084 |
-| `--opts out_file_name="robust.dir1000.title" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1"`         | 0.2784 | 0.3229 |
+| `--opts out_file_name="robust.dir1000.title.prf" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1"`         | 0.2784 | 0.3229 |
 | `--opts out_file_name="robust.jm0.5.title" rule="method:linear,collectionLambda:0.5" topic_type="title" use_prf="0"` | 0.2220 | 0.2827 |
 | `--opts out_file_name="robust.bm25.title" rule="okapi,k1:1.2,b:0.75,k3:7" topic_type="title" use_prf="0"`            | 0.2316 | 0.2977 |
 | `--opts out_file_name="robust.bm25.desc" rule="okapi" topic_type="desc" use_prf="0"`                                 | 0.2676 | 0.3265 |
