@@ -19,7 +19,27 @@ python3 run.py prepare \
   --repo osirrc2019/indri \
   --collections robust04=/path/to/disk45=trectext
 ```
-The created index is stemmed (Krovetz), with stopwords removed. 
+The created index is stemmed (Krovetz), with stopwords removed. The `manifest` file of the Indri index (printed to the terminal) should look as follows:
+
+```
+::::::::::::::
+/robust04/index/1/manifest
+::::::::::::::
+<parameters>
+	<code-build-date>Jun 15 2019</code-build-date>
+	<corpus>
+		<document-base>1</document-base>
+		<frequent-terms>10886</frequent-terms>
+		<maximum-document>528156</maximum-document>
+		<total-documents>528155</total-documents>
+		<total-terms>253367449</total-terms>
+		<unique-terms>664438</unique-terms>
+	</corpus>
+	<fields></fields>
+	<indri-distribution>Indri release 5.11</indri-distribution>
+	<type>DiskIndex</type>
+</parameters>
+```
 
 The following `jig` command can be used to perform a retrieval run on the collection with the `robust04` test collection:
 
@@ -47,11 +67,11 @@ The following table contains examples of `--opts` and the expected retrieval eff
 
 |                                                                                                                      | MAP    | P30    |
 |----------------------------------------------------------------------------------------------------------------------|--------|--------|
-| `--opts out_file_name="robust.dir1000.title" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="0"`         | 0.2477 | 0.3084 |
-| `--opts out_file_name="robust.dir1000.title.prf" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1"`         | 0.2784 | 0.3229 |
-| `--opts out_file_name="robust.jm0.5.title" rule="method:linear,collectionLambda:0.5" topic_type="title" use_prf="0"` | 0.2220 | 0.2827 |
-| `--opts out_file_name="robust.bm25.title" rule="okapi,k1:1.2,b:0.75,k3:7" topic_type="title" use_prf="0"`            | 0.2316 | 0.2977 |
-| `--opts out_file_name="robust.bm25.desc" rule="okapi" topic_type="desc" use_prf="0"`                                 | 0.2676 | 0.3265 |
+| `--opts out_file_name="robust.dir1000.title" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="0"`         | 0.2499 | 0.3100 |
+| `--opts out_file_name="robust.dir1000.title.prf" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1"`         | 0.2812 | 0.3248 |
+| `--opts out_file_name="robust.jm0.5.title" rule="method:linear,collectionLambda:0.5" topic_type="title" use_prf="0"` | 0.2242 | 0.2839 |
+| `--opts out_file_name="robust.bm25.title" rule="okapi,k1:1.2,b:0.75,k3:7" topic_type="title" use_prf="0"`            | 0.2338 | 0.2995 |
+| `--opts out_file_name="robust.bm25.desc" rule="okapi" topic_type="desc" use_prf="0"`                                 | 0.2702 | 0.3274 |
 
 ## Implementation
 
