@@ -1,9 +1,12 @@
 # Indri OSIRRC Docker Image
+[![Generic badge](https://img.shields.io/badge/DockerHub-go%21-yellow.svg)](https://hub.docker.com/r/osirrc2019/indri)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3247067.svg)](https://doi.org/10.5281/zenodo.3247067)
 
 [**Claudia Hauff**](https://github.com/chauff)
 
 This is the docker image for [Indri v5.13](https://sourceforge.net/projects/lemur/) conforming to the [OSIRRC jig](https://github.com/osirrc/jig/) for the [Open-Source IR Replicability Challenge (OSIRRC) at SIGIR 2019](https://osirrc.github.io/osirrc2019/).
-This image is has been tested with the jig at commit [ e26b16c](https://github.com/osirrc/jig/commit/e26b16c500bd575cbe588f718b80af6d331fe7fb) (June 14, 2019).
+This image is available on [Docker Hub](https://hub.docker.com/r/osirrc2019/anserini).
+The [OSIRRC 2019 image library](https://github.com/osirrc/osirrc2019-library) contains a log of successful executions of this image.
 
 + Supported test collections: `robust04`
 + Supported hooks: `index`, `search`
