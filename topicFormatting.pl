@@ -29,8 +29,11 @@ my $topicType = $ARGV[2]; #part of the topic file to consider (encompassing, i.e
 my $retrievalRule = $ARGV[3]; #retrieval rule
 my $seqDependence = $ARGV[4]; #sequential dependence
 
-if($topicType ne "title" && $topicType ne "desc" && $topicType ne "narr"){
-    print "The last argument (now: $topicType) is one of title|desc|narr.\n";
+if($topicType=~m/title/ || $topicType=~m/desc/ || $topicType=~m/narr/){
+    ;
+}
+else {
+    print "The last argument (now: $topicType) is one of title|desc|narr or a combination of them, e.g. title+desc.\n";
     exit;
 }
 
@@ -87,7 +90,7 @@ while(<IN>){
         print OUT "</text>\n</query>\n";
         $inType = "";
     }
-    elsif($_=~m/<title>/ && $topicType eq "title"){
+    elsif($_=~m/<title>/ && $topicType=~m/title/){
         $_=~s/<title>\s*//;
         $currentQuery = $currentQuery." ".clean($_);
         $inType = "title";
@@ -100,7 +103,7 @@ while(<IN>){
         $_=~s/<narr>\s*//;
         $inType = "narr";
     }
-    elsif($inType eq $topicType){
+    elsif($topicType=~m/$inType/){
         $currentQuery = $currentQuery." ".clean($_);
     }
     else {
