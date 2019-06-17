@@ -94,4 +94,4 @@ The `Robust04` topics are in "classic" TREC format, a format Indri cannot handle
 
 ## Reviews
 
-+ Documentation not yet reviewed
++ Documentation reviewed at commit [`b10184e`](https://github.com/osirrc/indri-docker/commit/0393a0419a89e88ae13b9a03094956bfdb10184e) (2019-06-16) by [r-clancy](https://github.com/r-clancy/).
