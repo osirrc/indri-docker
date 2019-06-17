@@ -18,8 +18,9 @@ out_file_name = args.json["opts"]["out_file_name"]
 search_rule = args.json["opts"]["rule"]
 topic_type = args.json["opts"]["topic_type"]
 use_prf = args.json["opts"]["use_prf"]
+sd = args.json["opts"]["sd"]
 
 if collection_name.lower() == "robust04":
-    subprocess.run("/searchRobust04.sh {} {} {} {} {} {} {}".format(collection_name, topic_path, top_k, out_file_name, search_rule, topic_type, use_prf), shell=True)
+    subprocess.run("/searchRobust04.sh {} {} {} {} {} {} {} {}".format(collection_name, topic_path, top_k, out_file_name, search_rule, topic_type, use_prf, sd), shell=True)
 else:
     print("Unknown collection: " + collection_name)

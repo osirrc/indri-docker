@@ -10,9 +10,10 @@ SEARCHRULE=$5
 TOPICTYPE=$6
 TOPICFILE_FORMATTED="/topics-INDRI"
 USEPRF=$7
+SD=$8
 
 #Reformat the topicfile (original TREC format) into one Indri can process
-perl /topicFormatting.pl "${TOPICFILE}" "${TOPICFILE_FORMATTED}" "${TOPICTYPE}" "${SEARCHRULE}"
+perl /topicFormatting.pl "${TOPICFILE}" "${TOPICFILE_FORMATTED}" "${TOPICTYPE}" "${SEARCHRULE}" "${SD}"
 
 #sanity check - first 10 lines of the new topic file
 echo "ROBUST04 ... first few lines of the topic file"

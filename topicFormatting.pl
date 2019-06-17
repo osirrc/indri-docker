@@ -6,14 +6,20 @@ use strict;
 #takes a string and cleans it up
 sub clean { 
     my $s = shift; 
-    $s  =~ s/[^a-zA-Z0-9]/ /g;  
+    $s =~s/[^a-zA-Z0-9]/ /g;  
+
+    #trim whitespaces
+    $s =~s/\s\s+/ /g;
+    $s =~ s/^\s+//;
+    $s =~ s/\s+$//;
+    
     $s = lc($s);  
     return $s; 
 }
 
 my $numArgs = $#ARGV+ 1;
-if($numArgs < 4 ){
-    print "Four command line arguments expected: [input: TREC formatted topic file] [output: Indri formatted file] [part (title/desc/narr)] [retrieval rule]\n";
+if($numArgs < 5 ){
+    print "Four command line arguments expected: [input: TREC formatted topic file] [output: Indri formatted file] [part (title/desc/narr)] [retrieval rule] [sequential dependence (1 or anything else)]\n";
     exit;
 }
 
@@ -21,6 +27,7 @@ my $infile = $ARGV[0]; #topic file in TREC format
 my $outfile = $ARGV[1]; #topic file in Indri format
 my $topicType = $ARGV[2]; #part of the topic file to consider (encompassing, i.e. choosing desc means title+desc)
 my $retrievalRule = $ARGV[3]; #retrieval rule
+my $seqDependence = $ARGV[4]; #sequential dependence
 
 if($topicType ne "title" && $topicType ne "desc" && $topicType ne "narr"){
     print "The last argument (now: $topicType) is one of title|desc|narr.\n";
@@ -31,6 +38,8 @@ open(OUT,">>$outfile")||die $!;
 print OUT "<parameters>\n";
 
 my $inType = "";
+my $currentQuery = "";
+
 open(IN,$infile)||die $!;
 while(<IN>){
     chomp;
@@ -43,44 +52,58 @@ while(<IN>){
         print OUT "$_</number>\n";
 
         print OUT "<text>";
-        if($retrievalRule=~m/(okapi|tfidf)/){
-            ;
-        }
-        else {
-            print OUT "#combine(";
-        }
     }
-    elsif($_=~m/<top>/){;}
+    elsif($_=~m/<top>/){
+        $currentQuery = "";
+    }
     elsif($_=~m/<\/top>/){
+        #process $currentQuery
         if($retrievalRule=~m/(okapi|tfidf)/){
-            ;
+            print OUT "$currentQuery";
         }
+        elsif($seqDependence ne "1"){
+            print OUT "#combine($currentQuery)";
+        }
+        #sequential dependence
         else {
-            print OUT ")";
+            print OUT "#weight( ";
+            print OUT "0.85 #combine($currentQuery) ";
+            print OUT "0.10 #combine(";
+
+            my @tokens =split(/\s+/,clean($currentQuery));
+
+            for(my $i=0; $i<@tokens-1; $i++){
+                print OUT "#1($tokens[$i] $tokens[$i+1]) ";
+            }
+
+            print OUT ") ";
+            print OT "0.05 #combine(";
+            for(my $i=0; $i<@tokens-1; $i++){
+                print OUT "#uw8($tokens[$i] $tokens[$i+1]) ";
+            }
+            print OUT "))";
         }
         print OUT "</text>\n</query>\n";
         $inType = "";
     }
-    elsif($_=~m/<title>/){
-        #we always print the title
+    elsif($_=~m/<title>/ && $topicType eq "title"){
         $_=~s/<title>\s*//;
-        print OUT clean($_)." ";
-        $inType = "T";
+        $currentQuery = $currentQuery." ".clean($_);
+        $inType = "title";
     }
     elsif($_=~m/<desc>/){
-        $inType = "D";
+        $_=~s/<desc>\s*//;
+        $inType = "desc";
     }
     elsif($_=~m/<narr>/){
-        $inType = "N";
+        $_=~s/<narr>\s*//;
+        $inType = "narr";
     }
-    elsif($inType eq "T"){
-        print OUT clean($_)." ";
+    elsif($inType eq $topicType){
+        $currentQuery = $currentQuery." ".clean($_);
     }
-    elsif($inType eq "D" && ($topicType eq "desc" || $topicType eq "narr")){
-        print OUT clean($_)." ";
-    }
-    elsif($inType eq "N" && $topicType eq "narr"){
-        print OUT clean($_)." ";
+    else {
+        ;
     }
 }
 
