@@ -74,6 +74,8 @@ The following table contains examples of `--opts` and the expected retrieval eff
 | `--opts out_file_name="robust.jm0.5.title" rule="method:linear,collectionLambda:0.5" topic_type="title" use_prf="0" sd="0"` | 0.2242 | 0.2839 |
 | `--opts out_file_name="robust.bm25.title" rule="okapi,k1:1.2,b:0.75,k3:7" topic_type="title" use_prf="0" sd="0"`            | 0.2338 | 0.2995 |
 | `--opts out_file_name="robust.bm25.title.prf" rule="okapi,k1:1.2,b:0.75,k3:7" topic_type="title" use_prf="1" sd="0"`            | 0.2563 | 0.3041 |
+| `--opts out_file_name="robust.bm25.title+desc" rule="okapi,k1:1.2,b:0.75,k3:7" topic_type="title+desc" use_prf="0" sd="0"`            | 0.2702 | 0.3274 |
+| `--opts out_file_name="robust.bm25.title+desc" rule="okapi,k1:1.2,b:0.75,k3:7" topic_type="title+desc" use_prf="1" sd="0"`            | 0.2804 | 0.3363 |
 
 ## Implementation
 
