@@ -67,11 +67,11 @@ The following table contains examples of `--opts` and the expected retrieval eff
 
 |                                                                                                                      | MAP    | P30    |
 |----------------------------------------------------------------------------------------------------------------------|--------|--------|
-| `--opts out_file_name="robust.dir1000.title" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="0"`         | 0.2499 | 0.3100 |
-| `--opts out_file_name="robust.dir1000.title.prf" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1"`         | 0.2812 | 0.3248 |
-| `--opts out_file_name="robust.jm0.5.title" rule="method:linear,collectionLambda:0.5" topic_type="title" use_prf="0"` | 0.2242 | 0.2839 |
-| `--opts out_file_name="robust.bm25.title" rule="okapi,k1:1.2,b:0.75,k3:7" topic_type="title" use_prf="0"`            | 0.2338 | 0.2995 |
-| `--opts out_file_name="robust.bm25.desc" rule="okapi" topic_type="desc" use_prf="0"`                                 | 0.2702 | 0.3274 |
+| `--opts out_file_name="robust.dir1000.title" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="0" sd="0"`         | 0.2499 | 0.3100 |
+| `--opts out_file_name="robust.dir1000.title.prf" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1" sd="0"`         | 0.2812 | 0.3248 |
+| `--opts out_file_name="robust.jm0.5.title" rule="method:linear,collectionLambda:0.5" topic_type="title" use_prf="0" sd="0"` | 0.2242 | 0.2839 |
+| `--opts out_file_name="robust.bm25.title" rule="okapi,k1:1.2,b:0.75,k3:7" topic_type="title" use_prf="0" sd="0"`            | 0.2338 | 0.2995 |
+| `--opts out_file_name="robust.bm25.desc" rule="okapi" topic_type="desc" use_prf="0" sd="0"`                                 | 0.2702 | 0.3274 |
 
 ## Implementation
 

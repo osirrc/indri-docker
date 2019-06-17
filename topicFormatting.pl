@@ -77,7 +77,7 @@ while(<IN>){
             }
 
             print OUT ") ";
-            print OT "0.05 #combine(";
+            print OUT "0.05 #combine(";
             for(my $i=0; $i<@tokens-1; $i++){
                 print OUT "#uw8($tokens[$i] $tokens[$i+1]) ";
             }
