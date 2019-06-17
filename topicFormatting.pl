@@ -57,11 +57,14 @@ while(<IN>){
         $currentQuery = "";
     }
     elsif($_=~m/<\/top>/){
+
+        my @tokens =split(/\s+/,clean($currentQuery));
+
         #process $currentQuery
         if($retrievalRule=~m/(okapi|tfidf)/){
             print OUT "$currentQuery";
         }
-        elsif($seqDependence ne "1"){
+        elsif($seqDependence ne "1" || (@tokens)<3){
             print OUT "#combine($currentQuery)";
         }
         #sequential dependence
@@ -69,8 +72,6 @@ while(<IN>){
             print OUT "#weight( ";
             print OUT "0.85 #combine($currentQuery) ";
             print OUT "0.10 #combine(";
-
-            my @tokens =split(/\s+/,clean($currentQuery));
 
             for(my $i=0; $i<@tokens-1; $i++){
                 print OUT "#1($tokens[$i] $tokens[$i+1]) ";
