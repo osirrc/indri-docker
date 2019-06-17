@@ -20,6 +20,7 @@ Once that is done, the following `jig` command can be used to index TREC disks 4
 ```
 python3 run.py prepare \
   --repo osirrc2019/indri \
+  --tag v0.1.0 \
   --collections robust04=/path/to/disk45=trectext
 ```
 The created index is stemmed (Krovetz), with stopwords removed. The `manifest` file of the Indri index (printed to the terminal) should look as follows:
@@ -49,6 +50,7 @@ The following `jig` command can be used to perform a retrieval run on the collec
 ```
 python3 run.py search \
   --repo osirrc2019/indri \
+  --tag v0.1.0 \
   --output out/indri \
   --qrels qrels/qrels.robust04.txt \
   --topic topics/topics.robust04.txt \
