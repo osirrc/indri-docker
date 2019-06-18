@@ -65,8 +65,8 @@ The following table contains examples of `--opts` and the expected retrieval eff
 
 ### robust04
 
-|                                                                                                                      MAP    | P@30    | P@10 | NDCG@20    |
-|----------------------------------------------------------------------------------------------------------------------|--------|--------|
+|       | MAP    | P@30    | P@10 | NDCG@20    |
+|----------------------------------------------------------------------------------------------------------------------|--------|--------|--------|--------|
 | `--opts out_file_name="robust.dir1000.title" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="0" sd="0"`         | 0.2499 | 0.3100 | 0.4253 | 0.4201 | 
 | `--opts out_file_name="robust.dir1000.title.sd" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="0" sd="1"`         | 0.2547 | 0.3131 | 0.4301 | 0.4195 |
 | `--opts out_file_name="robust.dir1000.title.prf" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1" sd="0"`         | 0.2812 | 0.3248 | 0.4386 | 0.4276 |
