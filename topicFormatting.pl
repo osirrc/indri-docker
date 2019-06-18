@@ -73,7 +73,7 @@ while(<IN>){
         #sequential dependence
         else {
             print OUT "#weight( ";
-            print OUT "0.85 #combine($currentQuery) ";
+            print OUT "0.80 #combine($currentQuery) ";
             print OUT "0.10 #combine(";
 
             for(my $i=0; $i<@tokens-1; $i++){
@@ -81,7 +81,7 @@ while(<IN>){
             }
 
             print OUT ") ";
-            print OUT "0.05 #combine(";
+            print OUT "0.10 #combine(";
             for(my $i=0; $i<@tokens-1; $i++){
                 print OUT "#uw8($tokens[$i] $tokens[$i+1]) ";
             }
