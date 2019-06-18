@@ -37,11 +37,16 @@ else {
     exit;
 }
 
+
 my %stopwords = ();
-open(IN,"stoplist.dft")||die $1;
+open(IN, "stoplist.dft")||die $!;
 while(<IN>){
-    chomp;
-    $stopwords{lc($_)}=1;
+    if($_=~m/<.*parameters>/ || $_=~m/<.*stopper>/){;}
+    else {
+        $_ =~s/.*<word>//;
+        $_ =~s/<\/word>.*\n//;
+        $stopwords{lc($_)}=1;
+    }
 }
 close(IN);
 
@@ -71,9 +76,10 @@ while(<IN>){
 
         my @tokens =split(/\s+/,clean($currentQuery));
 
-        my @stoppedTokens = [];
+        my @stoppedTokens;
         #we need to remove stopwords to get valid sd elements 
         foreach my $t(@tokens){
+            print "testing [".$t."]\n";
             if(exists $stopwords{$t}){;}
             else {
                 push(@stoppedTokens,$t);
