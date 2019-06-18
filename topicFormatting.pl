@@ -37,6 +37,14 @@ else {
     exit;
 }
 
+my %stopwords = ();
+open(IN,"stoplist.dft")||die $1;
+while(<IN>){
+    chomp;
+    $stopwords{lc($_)}=1;
+}
+close(IN);
+
 open(OUT,">>$outfile")||die $!;
 print OUT "<parameters>\n";
 
@@ -63,27 +71,36 @@ while(<IN>){
 
         my @tokens =split(/\s+/,clean($currentQuery));
 
+        my @stoppedTokens = [];
+        #we need to remove stopwords to get valid sd elements 
+        foreach my $t(@tokens){
+            if(exists $stopwords{$t}){;}
+            else {
+                push(@stoppedTokens,$t);
+            }
+        }
+
         #process $currentQuery
         if($retrievalRule=~m/(okapi|tfidf)/){
             print OUT "$currentQuery";
         }
-        elsif($seqDependence ne "1" || (@tokens)<3){
+        elsif($seqDependence ne "1" || (@stoppedTokens)<3){
             print OUT "#combine($currentQuery)";
         }
         #sequential dependence
         else {
             print OUT "#weight( ";
-            print OUT "0.80 #combine($currentQuery) ";
+            print OUT "0.85 #combine($currentQuery) ";
             print OUT "0.10 #combine(";
 
-            for(my $i=0; $i<@tokens-1; $i++){
-                print OUT "#1($tokens[$i] $tokens[$i+1]) ";
+            for(my $i=0; $i<@stoppedTokens-1; $i++){
+                print OUT "#1($stoppedTokens[$i] $stoppedTokens[$i+1]) ";
             }
 
             print OUT ") ";
-            print OUT "0.10 #combine(";
-            for(my $i=0; $i<@tokens-1; $i++){
-                print OUT "#uw8($tokens[$i] $tokens[$i+1]) ";
+            print OUT "0.05 #combine(";
+            for(my $i=0; $i<@stoppedTokens-1; $i++){
+                print OUT "#uw8($stoppedTokens[$i] $stoppedTokens[$i+1]) ";
             }
             print OUT "))";
         }
