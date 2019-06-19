@@ -95,15 +95,15 @@ while(<IN>){
         #sequential dependence
         else {
             print OUT "#weight( ";
-            print OUT "0.5 #combine(".clean($currentQuery).") ";
-            print OUT "0.3 #combine(";
+            print OUT "0.9 #combine(".clean($currentQuery).") ";
+            print OUT "0.05 #combine(";
 
             for(my $i=0; $i<@stoppedTokens-1; $i++){
                 print OUT "#1($stoppedTokens[$i] $stoppedTokens[$i+1]) ";
             }
 
             print OUT ") ";
-            print OUT "0.2 #combine(";
+            print OUT "0.05 #combine(";
             for(my $i=0; $i<@stoppedTokens-1; $i++){
                 print OUT "#uw8($stoppedTokens[$i] $stoppedTokens[$i+1]) ";
             }
