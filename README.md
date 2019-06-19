@@ -75,7 +75,7 @@ The following table contains examples of `--opts` and the expected retrieval eff
 |       | MAP    | P@30    | P@10 | NDCG@20    |
 |----------------------------------------------------------------------------------------------------------------------|--------|--------|--------|--------|
 | `--opts out_file_name="robust.dir1000.title" rule="method:dirichlet,mu:1000" topic_type="title"`         | 0.2499 | 0.3100 | 0.4253 | 0.4201 | 
-| `--opts out_file_name="robust.dir1000.title.sd" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="0" sd="1"`         | 0.2547 | 0.3131 | 0.4301 | 0.4195 |
+| `--opts out_file_name="robust.dir1000.title.sd" rule="method:dirichlet,mu:1000" topic_type="title" sd="1"`         | 0.2547 | 0.3131 | 0.4329 | 0.4195 |
 | `--opts out_file_name="robust.dir1000.title.prf" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1" sd="0"`         | 0.2812 | 0.3248 | 0.4386 | 0.4276 |
 | `--opts out_file_name="robust.dir1000.title.prf.sd" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1" sd="1"`         | 0.2857 | 0.3300 | 0.4390 | 0.4310 |
 | `--opts out_file_name="robust.jm0.5.title" rule="method:linear,collectionLambda:0.5" topic_type="title" use_prf="0" sd="0"` | 0.2242 | 0.2839 | 0.3819 | 0.3689 |
