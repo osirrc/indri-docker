@@ -65,32 +65,35 @@ While a retrieval rule can be specified, for PRF this option is not available at
 - The created index is stemmed (Krovetz), with stopwords removed. The [Lemur project stopword list](http://www.lemurproject.org/stopwords/stoplist.dft) was used; it contains 418 stopwords.
 - The pseudo-relevance feedback setting is hardcoded in [searchRobust04.sh](searchRobust04.sh): 50 `fbDocs`, 25 `fbTerms`, 0.5 `fbOrigWeight`.
 - The sequential dependency model setting is hardcoded in [topicFormatting.pl](topicFormatting.pl): 0.9 original query, 0.05 bigram, 0.05 unordered window.
+- Only standard stopword removal is applied to the topics; this means that in the TREC description and TREC narrative phrases like *Find relevant documents about ... * or *Relevant are documents that ...* **remains** in the topic after processing. 
 
 ## Expected Results
 
-The following table contains examples of `--opts` and the expected retrieval effectiveness in MAP, precision @10/@30 and ndcg @20.
+The following table contains examples of `--opts` and the expected retrieval effectiveness in MAP, Precision@30/@10 and NDCG@20. These metrics may seem arbitrary; in fact, they were chosen to make---at least on paper---comparisons to published works on the same corpus.
 
-### robust04
+### Robust04
 
 |       | MAP    | P@30    | P@10 | NDCG@20    |
 |----------------------------------------------------------------------------------------------------------------------|--------|--------|--------|--------|
-| `--opts out_file_name="robust.dir1000.title" rule="method:dirichlet,mu:1000" topic_type="title"`         | 0.2499 | 0.3100 | 0.4253 | 0.4201 | 
-| `--opts out_file_name="robust.dir1000.title.sd" rule="method:dirichlet,mu:1000" topic_type="title" sd="1"`         | 0.2547 | 0.3131 | 0.4329 | 0.4195 |
-| `--opts out_file_name="robust.dir1000.title.prf" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1" sd="0"`         | 0.2812 | 0.3248 | 0.4386 | 0.4276 |
-| `--opts out_file_name="robust.dir1000.title.prf.sd" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1" sd="1"`         | 0.2857 | 0.3300 | 0.4390 | 0.4310 |
-| `--opts out_file_name="robust.jm0.5.title" rule="method:linear,collectionLambda:0.5" topic_type="title" use_prf="0" sd="0"` | 0.2242 | 0.2839 | 0.3819 | 0.3689 |
-| `--opts out_file_name="robust.bm25.title" rule="okapi,k1:1.2,b:0.75" topic_type="title" use_prf="0" sd="0"`            | 0.2338 | 0.2995 | 0.4181 | 0.4041 |
-| `--opts out_file_name="robust.bm25.title.prf" rule="okapi,k1:1.2,b:0.75" topic_type="title" use_prf="1" sd="0"`            | 0.2563 | 0.3041 | 0.4012 | 0.3995 |
-| `--opts out_file_name="robust.bm25.desc" rule="okapi,k1:1.2,b:0.75" topic_type="desc" use_prf="0" sd="0"`            | 0.2337 | 0.2878 | 0.4092 | 0.3987 |
-| `--opts out_file_name="robust.bm25.title+desc" rule="okapi,k1:1.2,b:0.75" topic_type="title+desc" use_prf="0" sd="0"`            | 0.2702 | 0.3274 | 0.4618 | 0.4517 |
+| :one: `--opts out_file_name="robust.dir1000.title" rule="method:dirichlet,mu:1000" topic_type="title"`         | 0.2499 | 0.3100 | 0.4253 | 0.4201 | 
+| :two: `--opts out_file_name="robust.dir1000.title.sd" rule="method:dirichlet,mu:1000" topic_type="title" sd="1"`         | 0.2547 | 0.3146 | 0.4329 | 0.4232 |
+| :three: `--opts out_file_name="robust.dir1000.title.prf" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1"`         | 0.2812 | 0.3248 | 0.4386 | 0.4276 |
+| :four: `--opts out_file_name="robust.dir1000.title.prf.sd" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1" sd="1"`  | 0.2855 | 0.3295 | 0.4474 | 0.4298 |
+| :five: `--opts out_file_name="robust.jm0.5.title" rule="method:linear,collectionLambda:0.5" topic_type="title"` | 0.2242 | 0.2839 | 0.3819 | 0.3689 |
+| :six: `--opts out_file_name="robust.bm25.title" rule="okapi,k1:1.2,b:0.75" topic_type="title"`            | 0.2338 | 0.2995 | 0.4181 | 0.4041 |
+| :seven: `--opts out_file_name="robust.bm25.title.prf" rule="okapi,k1:1.2,b:0.75" topic_type="title" use_prf="1"`            | 0.2563 | 0.3041 | 0.4012 | 0.3995 |
+| :eight: `--opts out_file_name="robust.bm25.title+desc" rule="okapi,k1:1.2,b:0.75" topic_type="title+desc"`            | 0.2702 | 0.3274 | 0.4618 | 0.4517 |
+| :nine: `--opts out_file_name="robust.bm25.title+desc.prf.sd" rule="method:dirichlet,mu:1000" topic_type="title+desc" use_prf="1" sd="1"`  | 0.2971 | 0.3562 | 0.4550 | 0.4448 |
+| :keycap_ten: `--opts out_file_name="robust.dir1000.desc" rule="method:dirichlet,mu:1000" topic_type="desc"`  | 0.2023 | 0.2581 | 0.3703 | 0.3635 |
+
 
 **How do we fare compared to Indri results reported in papers?** Here, we are considering the `Robust04` numbers reported by researchers working at the institute developing/maintaining Indri:
-- [Query Reformulation Using Anchor Text](http://www.wsdm-conference.org/2010/proceedings/docs/p41.pdf) contains a language modeling experiment on `Robust04` that reports a `P@10` of ~0.395 for an unstemmed index (and 246 topics instead of 249).
-- [Learning to Reweight Terms with Distributed Representations](https://www.cs.cmu.edu/~callan/Papers/sigir15-gzheng.pdf) offers several baselines with a Krovetz stemmed `Robust04` index with stopwords removed (corresponds to our setup). The `BOW` model (language modeling with Dirichlet smoothing) achieves a MAP of 0.2512, the `SD` model (language modeling with sequntial dependency) achieves a MAP of 0.2643. For BM25 the authors report a MAP of 0.2460. 
-- [Deeper Text Understanding for IR with Contextual Neural Language Modeling](https://arxiv.org/pdf/1905.09217.pdf) contains not a lot of details but reports a ndcg@20 of 0.417 for title queries (language modeling) and 0.409 for description queries (language modeling). It is not entirely clear how the description topics were processed - if at all (sometimes certain phrases like *Find information on* are removed). Slightly higher values (0.427 for title as well as description queries) are reported for the sequential dependence model.
-- [Effective Query Formulation with Multiple Information Sources](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.366.7813&rep=rep1&type=pdf) reports an ndcg@20 of 0.4178 (title queries) and 0.4085 (description queries) for the sequential dependence model.
+- [Query Reformulation Using Anchor Text](http://www.wsdm-conference.org/2010/proceedings/docs/p41.pdf) contains a language modeling experiment on `Robust04` that reports a `P@10` of 0.395 for an unstemmed index (and 246 topics instead of 249). Similar setup to run :one:.
+- [Learning to Reweight Terms with Distributed Representations](https://www.cs.cmu.edu/~callan/Papers/sigir15-gzheng.pdf) offers several baselines with a Krovetz stemmed `Robust04` index with stopwords removed. The `BOW` model (language modeling with Dirichlet smoothing, similar to :one:) achieves a MAP of 0.2512, the `SD` model (language modeling with sequential dependency, similar to :two:) achieves a MAP of 0.2643. For BM25 (similar to :six:) the authors report a MAP of 0.2460.
+- [Deeper Text Understanding for IR with Contextual Neural Language Modeling](https://arxiv.org/pdf/1905.09217.pdf) contains not a lot of details but reports a NDCG@20 of 0.417 for title queries (language modeling, similar to :one:) and 0.409 for description queries (language modeling, similar to :keycap_ten:). It is not entirely clear how the description topics were processed. Slightly higher values are reported for the `SD` model: 0.427 for title (similar to run :two:) as well as description queries.
+- [Effective Query Formulation with Multiple Information Sources](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.366.7813&rep=rep1&type=pdf) reports an NDCG@20 of 0.4178 (title queries, similar to :two:) and 0.4085 (description queries) for the sequential dependence model.
 
-
+Conclusion: the sequential dependency model outperforms the standard language modeling approach, though the absolute differences we observe are smaller. BM25 peforms worse than expected, this is likely a hyperparameter issue (we did not tune, used default values). The biggest difference can be found in the results involving TREC topic descriptions, a preprocessing issue (specific stopword phrases for description topics).
 
 ## Implementation
 
