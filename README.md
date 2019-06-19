@@ -65,7 +65,7 @@ While a retrieval rule can be specified, for PRF this option is not available at
 - The created index is stemmed (Krovetz), with stopwords removed. The [Lemur project stopword list](http://www.lemurproject.org/stopwords/stoplist.dft) was used; it contains 418 stopwords.
 - The pseudo-relevance feedback setting is hardcoded in [searchRobust04.sh](searchRobust04.sh): 50 `fbDocs`, 25 `fbTerms`, 0.5 `fbOrigWeight`.
 - The sequential dependency model setting is hardcoded in [topicFormatting.pl](topicFormatting.pl): 0.9 original query, 0.05 bigram, 0.05 unordered window.
-- Only standard stopword removal is applied to the topics; this means that in the TREC description and TREC narrative phrases like *Find relevant documents about ... * or *Relevant are documents that ...* **remains** in the topic after processing. 
+- Only standard stopword removal is applied to the topics; this means that in the TREC description and TREC narrative phrases like *Find relevant documents about* or *Relevant are documents that ...* **remains** in the topic after processing. 
 
 ## Expected Results
 
