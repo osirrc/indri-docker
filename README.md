@@ -19,7 +19,8 @@ python3 run.py prepare \
   --repo osirrc2019/indri \
   --collections robust04=/path/to/disk45=trectext
 ```
-The created index is stemmed (Krovetz), with stopwords removed. The `manifest` file of the Indri index (printed to the terminal) should look as follows:
+
+The `manifest` file of the Indri index (printed to the terminal) should look as follows:
 
 ```
 ::::::::::::::
@@ -53,11 +54,17 @@ python3 run.py search \
   --top_k 1000 \
   --opts out_file_name="robust.dir1000" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="0"
 ```
-The option `--opts` has a `rule` entry to determine the retrieval method, a `topic_type` entry to determine the TREC topic type (either `title`, `desc` or `narr` or a combination, e.g. `title+desc`), a `use_prf` entry to determine the usage of pseudo-relevance feedback (`"1"` to use PRF, anything else to not use it) and a `sd` entry to switch on (`"1"`) or off the sequence dependency model (`sd` will have no effect on `tfidf` or `okapi`). 
+The option `--opts` has a `rule` entry to determine the retrieval method, a `topic_type` entry to determine the TREC topic type (either `title`, `desc` or `narr` or a combination, e.g. `title+desc`), a `use_prf` entry to determine the usage of pseudo-relevance feedback (`"1"` to use PRF, anything else to not use it) and a `sd` entry to switch on (`"1"`) or off the sequence dependency model (`sd` will have no effect on `tfidf` or `okapi`). Both `sd` and `use_prf` are optional parameters; if they are not provided, they are by default switched off.
 
 Valid  retrieval `rule` entries can be found [in the Indri documentation](https://lemurproject.org/doxygen/lemur/html/IndriRunQuery.html). Importantly, the `tfidf` and `okapi` methods also work in the `rule` entry (i.e. no separate *baseline* entry is necessary). 
 
 While a retrieval rule can be specified, for PRF this option is not available at the moment (check [searchRobust04.sh](searchRobust04.sh) to make changes), instead a set of default settings are used: 50 feedback documents, 25 feedback terms and equal weighting between the original and expanded query.
+
+## Setup Details
+
+- The created index is stemmed (Krovetz), with stopwords removed. The [Lemur project stopword list](http://www.lemurproject.org/stopwords/stoplist.dft) was used; it contains 418 stopwords.
+- The pseudo-relevance feedback setting is hardcoded in [searchRobust04.sh](searchRobust04.sh): 50 `fbDocs`, 25 `fbTerms`, 0.5 `fbOrigWeight`.
+- The sequential dependency model setting is hardcoded in [topicFormatting.pl](topicFormatting.pl): 0.9 original query, 0.05 bigram, 0.05 unordered window.
 
 ## Expected Results
 
@@ -67,7 +74,7 @@ The following table contains examples of `--opts` and the expected retrieval eff
 
 |       | MAP    | P@30    | P@10 | NDCG@20    |
 |----------------------------------------------------------------------------------------------------------------------|--------|--------|--------|--------|
-| `--opts out_file_name="robust.dir1000.title" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="0" sd="0"`         | 0.2499 | 0.3100 | 0.4253 | 0.4201 | 
+| `--opts out_file_name="robust.dir1000.title" rule="method:dirichlet,mu:1000" topic_type="title"`         | 0.2499 | 0.3100 | 0.4253 | 0.4201 | 
 | `--opts out_file_name="robust.dir1000.title.sd" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="0" sd="1"`         | 0.2547 | 0.3131 | 0.4301 | 0.4195 |
 | `--opts out_file_name="robust.dir1000.title.prf" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1" sd="0"`         | 0.2812 | 0.3248 | 0.4386 | 0.4276 |
 | `--opts out_file_name="robust.dir1000.title.prf.sd" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1" sd="1"`         | 0.2857 | 0.3300 | 0.4390 | 0.4310 |
