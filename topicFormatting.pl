@@ -79,7 +79,6 @@ while(<IN>){
         my @stoppedTokens;
         #we need to remove stopwords to get valid sd elements 
         foreach my $t(@tokens){
-            print "testing [".$t."]\n";
             if(exists $stopwords{$t}){;}
             else {
                 push(@stoppedTokens,$t);
@@ -88,7 +87,7 @@ while(<IN>){
 
         #process $currentQuery
         if($retrievalRule=~m/(okapi|tfidf)/){
-            print OUT "$currentQuery";
+            print OUT clean($currentQuery);
         }
         elsif($seqDependence ne "1" || (@stoppedTokens)<3){
             print OUT "#combine($currentQuery)";
@@ -96,8 +95,8 @@ while(<IN>){
         #sequential dependence
         else {
             print OUT "#weight( ";
-            print OUT "0.6 #combine($currentQuery) ";
-            print OUT "0.2 #combine(";
+            print OUT "0.5 #combine(".clean($currentQuery).") ";
+            print OUT "0.3 #combine(";
 
             for(my $i=0; $i<@stoppedTokens-1; $i++){
                 print OUT "#1($stoppedTokens[$i] $stoppedTokens[$i+1]) ";
