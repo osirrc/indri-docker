@@ -16,5 +16,7 @@ for collection in args.json["collections"]:
     name, path = collection["name"], collection["path"]
     if name.lower() == "robust04":
         subprocess.run("/indexRobust04.sh {} {} {}".format(collection["path"], collection["name"], collection["format"]), shell=True)
+    else if name.lower() == "gov2":
+        subprocess.run("/indexGOV2.sh {} {} {}".format(collection["path"], collection["name"], collection["format"]), shell=True)
     else:
         print("Unknown collection: " + name)
