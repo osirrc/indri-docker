@@ -26,7 +26,7 @@ sd = "0" #by default no sequential dependence model
 if "sd" in args.json["opts"]:
     sd = args.json["opts"]["sd"]
 
-if collection_name.lower() == "robust04":
-    subprocess.run("/searchRobust04.sh {} {} {} {} {} {} {} {}".format(collection_name, topic_path, top_k, out_file_name, search_rule, topic_type, use_prf, sd), shell=True)
+if collection_name.lower() == "robust04" or collection_name.lower() == "gov2":
+    subprocess.run("/search.sh {} {} {} {} {} {} {} {}".format(collection_name, topic_path, top_k, out_file_name, search_rule, topic_type, use_prf, sd), shell=True)
 else:
     print("Unknown collection: " + collection_name)

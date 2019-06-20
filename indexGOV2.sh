@@ -26,17 +26,5 @@ echo "GOV2 ... Indexing"
 /work/Indri/bin/IndriBuildIndex index.param stoplist.dft
 
 #printout manifest file
-more ${INDEX}/index/1/manifest
-more ${INDEX}/index/2/manifest
-more ${INDEX}/index/3/manifest
-more ${INDEX}/index/4/manifest
-more ${INDEX}/index/5/manifest
-more ${INDEX}/index/6/manifest
-more ${INDEX}/index/7/manifest
 more ${INDEX}/index/8/manifest
-more ${INDEX}/index/9/manifest
-more ${INDEX}/index/10/manifest
-more ${INDEX}/index/11/manifest
-more ${INDEX}/index/12/manifest
-more ${INDEX}/index/13/manifest
-more ${INDEX}/index/14/manifest
+

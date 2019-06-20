@@ -20,7 +20,7 @@ COPY index /
 COPY indexRobust04.sh /
 COPY indexGOV2.sh /
 COPY search /
-COPY searchRobust04.sh /
+COPY search.sh /
 COPY topicFormatting.pl /
 
 RUN chmod +x /index
