@@ -6,7 +6,7 @@ COLLECTION_FORMAT=$3
 COLLECTION_PATH_WRITABLE=$1"-WRITABLE"
 
 #first we need to parse the collection
-nodejs parseCore18.js ${COLLECTION_PATH}/data/* ${COLLECTION_PATH_WRITABLE}
+nodejs /parseCore18.js ${COLLECTION_PATH}/data/* ${COLLECTION_PATH_WRITABLE}
 
 #retrieve stopword list (stored in current directory)
 wget http://www.lemurproject.org/stopwords/stoplist.dft
