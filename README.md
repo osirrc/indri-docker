@@ -137,7 +137,7 @@ Conclusion: the sequential dependency model outperforms the standard language mo
 
 ### `gov2`
 
-The results below are computed based on the 150 topics available for `gov2`.
+The results below are computed based on the 150 topics ([topics/topics.701-850.txt](topics/topics.701-850.txt)) available for `gov2`.
 
 |       | MAP    | P@30    | P@10 | NDCG@20    |
 |----------------------------------------------------------------------------------------------------------------------|--------|--------|--------|--------|
