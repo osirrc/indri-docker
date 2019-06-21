@@ -2,7 +2,8 @@
 
 "use strict";
 let fileToProcess = process.argv[2];
-let outFile = process.argv[3];
+let outFolder = process.argv[3]+"/file";
+let outFileCounter = 0;
 
 const readline = require('readline');  
 const fs = require('fs');  
@@ -32,9 +33,11 @@ readInterface.on('line', function(line) {
     indriDoc = indriDoc + "\n</BODY>\n</HTML>\n</DOC>\n";
 
     try {
+        let outFile = outFolder+""+outFileCounter;
         fs.appendFileSync(outFile, indriDoc);
         if(lineCounter % 1000 == 0){
             console.log("Line "+lineCounter+" written to file.");
+            outFileCounter++;
         }
       } catch (err) {
         /* Handle the error */
