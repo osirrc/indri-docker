@@ -14,7 +14,7 @@ First, clone the [`jig`](https://github.com/osirrc/jig) and follow its setup ins
 
 ### Indexing a collection
 
-Once that is done, the following `jig` command can be used to index TREC disks 4/5 for `robust04` (analogous command for the `gov2` corpus):
+Once that is done, the following `jig` command can be used to index TREC disks 4/5 for `robust04`:
 
 ```
 python3 run.py prepare \
@@ -44,7 +44,14 @@ For `robust04`, the `manifest` file of the Indri index (printed to the terminal)
 </parameters>
 ```
 
-For `gov2`, the `manifest` file looks like this:
+For `gov2`, **we have to change the corpus format** to `trecweb` (note: format `trectext` will not throw an error but instead lead to a poorly performing index as HTML documents are not handled correctly):
+```
+python3 run.py prepare \
+  --repo osirrc2019/indri \
+  --collections gov2=/path/to/gov2=trecweb
+```
+
+After indexing, the `manifest` file looks like this:
 
 ::::::::::::::
 /gov2/index/8/manifest
@@ -111,7 +118,7 @@ The following table contains examples of `--opts` and the expected retrieval eff
 
 ### `robust04`
 
-The results below are computed based on the 249 topics of `robust04`.
+The results below are computed based on the 250 topics of `robust04`.
 
 |       | MAP    | P@30    | P@10 | NDCG@20    |
 |----------------------------------------------------------------------------------------------------------------------|--------|--------|--------|--------|
