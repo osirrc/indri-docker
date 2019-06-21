@@ -22,55 +22,12 @@ python3 run.py prepare \
   --collections robust04=/path/to/disk45=trectext
 ```
 
-For `robust04`, the `manifest` file of the Indri index (printed to the terminal) should look as follows:
-
-```
-::::::::::::::
-/robust04/index/1/manifest
-::::::::::::::
-<parameters>
-	<code-build-date>Jun 15 2019</code-build-date>
-	<corpus>
-		<document-base>1</document-base>
-		<frequent-terms>10886</frequent-terms>
-		<maximum-document>528156</maximum-document>
-		<total-documents>528155</total-documents>
-		<total-terms>253367449</total-terms>
-		<unique-terms>664438</unique-terms>
-	</corpus>
-	<fields></fields>
-	<indri-distribution>Indri release 5.11</indri-distribution>
-	<type>DiskIndex</type>
-</parameters>
-```
-
 For `gov2`, **we have to change the corpus format** to `trecweb` (note: format `trectext` will not throw an error but instead lead to a poorly performing index as HTML documents are not handled correctly):
 ```
 python3 run.py prepare \
   --repo osirrc2019/indri \
   --collections gov2=/path/to/gov2=trecweb
 ```
-
-After indexing, the `manifest` file looks like this:
-
-::::::::::::::
-/gov2/index/8/manifest
-::::::::::::::
-<parameters>
-	<code-build-date>Jun 15 2019</code-build-date>
-	<corpus>
-		<document-base>1</document-base>
-		<frequent-terms>21590</frequent-terms>
-		<maximum-document>25205180</maximum-document>
-		<total-documents>25205179</total-documents>
-		<total-terms>1498525044</total-terms>
-		<unique-terms>3019667</unique-terms>
-	</corpus>
-	<fields></fields>
-	<indri-distribution>Indri release 5.11</indri-distribution>
-	<type>DiskIndex</type>
-</parameters>
-
 
 ### Searching a collection
 

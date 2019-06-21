@@ -52,6 +52,3 @@ more index.param
 #start indexing
 echo "ROBUST04 ... Indexing"
 /work/Indri/bin/IndriBuildIndex index.param stoplist.dft
-
-#printout manifest file
-more ${INDEX}/index/1/manifest

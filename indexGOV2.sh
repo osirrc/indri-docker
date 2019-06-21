@@ -24,7 +24,3 @@ more index.param
 #start indexing
 echo "GOV2 ... Indexing"
 /work/Indri/bin/IndriBuildIndex index.param stoplist.dft
-
-#printout manifest file (manifest file path assumes entire collectionn is indexed)
-more ${INDEX}/index/8/manifest
-
