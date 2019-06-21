@@ -19,6 +19,7 @@ RUN cd /work/indri-5.13 && cp ../Make* . && make && make install
 COPY index /
 COPY indexRobust04.sh /
 COPY indexGOV2.sh /
+COPY indexCore18.sh /
 COPY search /
 COPY search.sh /
 COPY topicFormatting.pl /
