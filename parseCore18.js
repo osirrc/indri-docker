@@ -1,5 +1,6 @@
 //@ts-check
 
+"use strict";
 let fileToProcess = process.argv[2];
 let outFile = process.argv[3];
 
