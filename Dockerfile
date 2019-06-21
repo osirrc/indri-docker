@@ -6,6 +6,8 @@ RUN apt-get update && apt-get install -y \
     g++ \
     make \
     zlib1g-dev \
+    nodejs \
+    npm \
     python3
 
 WORKDIR /work
