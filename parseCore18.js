@@ -9,7 +9,7 @@ const readline = require('readline');
 const fs = require('fs');  
 
 const readInterface = readline.createInterface({  
-    input: fs.createReadStream(fileToProcess)
+    input: fs.createReadStream(fileToProcess, {encoding: 'utf8'})
 });
 
 let lineCounter = 0;

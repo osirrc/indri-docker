@@ -41,7 +41,7 @@ python3 run.py search \
   --topic topics/topics.robust04.txt \
   --collection robust04 \ 
   --top_k 1000 \
-  --opts out_file_name="robust.dir1000" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="0"
+  --opts out_file_name="robust.dir1000" rule="method:dirichlet,mu:1000" topic_type="title"
 ```
 
 For `gov2`, use the following command:
@@ -53,7 +53,7 @@ python3 run.py search \
   --topic topics/topics.701-850.txt \
   --collection gov2 \ 
   --top_k 1000 \
-  --opts out_file_name="gov2.dir1000" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="0"
+  --opts out_file_name="gov2.dir1000" rule="method:dirichlet,mu:1000" topic_type="title"
 ```
 
 The option `--opts` has a `rule` entry to determine the retrieval method, a `topic_type` entry to determine the TREC topic type (either `title`, `desc` or `narr` or a combination, e.g. `title+desc`), a `use_prf` entry to determine the usage of pseudo-relevance feedback (`"1"` to use PRF, anything else to not use it) and a `sd` entry to switch on (`"1"`) or off the sequence dependency model (`sd` will have no effect on `tfidf` or `okapi`). Both `sd` and `use_prf` are optional parameters; if they are not provided, they are by default switched off.
@@ -105,9 +105,11 @@ The results below are computed based on the 150 topics ([topics/topics.701-850.t
 
 |       | MAP    | P@30    | P@10 | NDCG@20    |
 |----------------------------------------------------------------------------------------------------------------------|--------|--------|--------|--------|
-| :one: `--opts out_file_name="gov2.dir1000.title" rule="method:dirichlet,mu:1000" topic_type="title"`         | 0.2499 | ??? | 0.4253 | 0.4201 | 
-| :two: `--opts out_file_name="gov2.dir1000.title.sd" rule="method:dirichlet,mu:1000" topic_type="title" sd="1"`         | 0.2547 | ??? | 0.4329 | 0.4232 |
+| :one: `--opts out_file_name="gov2.dir1000.title" rule="method:dirichlet,mu:1000" topic_type="title"`         | 0.2800 | 0.4741 | 0.5174 | 0.4353 | 
+| :two: `--opts out_file_name="gov2.dir1000.title.sd" rule="method:dirichlet,mu:1000" topic_type="title" sd="1"`         | 0.2904 | 0.4899 | 0.5463 | 0.4507 |
+
 | :three: `--opts out_file_name="gov2.dir1000.title.prf" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1"`         | 0.2812 | ??? | 0.4386 | 0.4276 |
+
 | :four: `--opts out_file_name="gov2.dir1000.title.prf.sd" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1" sd="1"`  | 0.2855 | ??? | 0.4474 | 0.4298 |
 | :five: `--opts out_file_name="gov2.jm0.5.title" rule="method:linear,collectionLambda:0.5" topic_type="title"` | 0.2242 | ??? | 0.3819 | 0.3689 |
 | :six: `--opts out_file_name="gov2.bm25.title" rule="okapi,k1:1.2,b:0.75" topic_type="title"`            | 0.2338 | ??? | 0.4181 | 0.4041 |
