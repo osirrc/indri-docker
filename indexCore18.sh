@@ -11,7 +11,9 @@ mkdir ${COLLECTION_PATH_WRITABLE}
 nodejs /parseCore18.js ${COLLECTION_PATH}/data/* ${COLLECTION_PATH_WRITABLE}
 
 ls ${COLLECTION_PATH_WRITABLE}
-more ${COLLECTION_PATH_WRITABLE}/file0
+more ${COLLECTION_PATH_WRITABLE}/file1
+echo "++++++++";
+echo "++++++++";
 
 #retrieve stopword list (stored in current directory)
 wget http://www.lemurproject.org/stopwords/stoplist.dft
