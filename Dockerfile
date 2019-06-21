@@ -25,6 +25,7 @@ COPY indexCore18.sh /
 COPY search /
 COPY search.sh /
 COPY topicFormatting.pl /
+COPY parseCore18.js /
 
 RUN chmod +x /index
 RUN chmod +x /search
