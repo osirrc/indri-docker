@@ -10,7 +10,8 @@ mkdir ${COLLECTION_PATH_WRITABLE}
 #first we need to parse the collection
 nodejs /parseCore18.js ${COLLECTION_PATH}/data/* ${COLLECTION_PATH_WRITABLE}
 
-ls ${COLLECTION_PATH_WRITABLE}
+ls -al ${COLLECTION_PATH_WRITABLE}
+echo "---------";
 more ${COLLECTION_PATH_WRITABLE}/file1
 echo "++++++++";
 echo "++++++++";
