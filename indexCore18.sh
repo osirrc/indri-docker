@@ -5,6 +5,8 @@ INDEX="/"$2
 COLLECTION_FORMAT=$3
 COLLECTION_PATH_WRITABLE=$1"-WRITABLE"
 
+mkdir ${COLLECTION_PATH_WRITABLE}
+
 #first we need to parse the collection
 nodejs /parseCore18.js ${COLLECTION_PATH}/data/* ${COLLECTION_PATH_WRITABLE}
 
