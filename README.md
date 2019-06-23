@@ -5,7 +5,7 @@
 This is the docker image for [Indri v5.13](https://sourceforge.net/projects/lemur/) conforming to the [OSIRRC jig](https://github.com/osirrc/jig/) for the [Open-Source IR Replicability Challenge (OSIRRC) at SIGIR 2019](https://osirrc.github.io/osirrc2019/).
 This image is has been tested with the jig at commit [ e26b16c](https://github.com/osirrc/jig/commit/e26b16c500bd575cbe588f718b80af6d331fe7fb) (June 14, 2019).
 
-+ Supported test collections: `robust04`, `gov2`
++ Supported test collections: `robust04`, `gov2`, `core18`
 + Supported hooks: `index`, `search`
 
 ## Quick Start
