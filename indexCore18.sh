@@ -32,7 +32,3 @@ more index.param
 echo "Core18 ... Indexing"
 /work/Indri/bin/IndriBuildIndex index.param stoplist.dft
 
-#printout manifest file (manifest file path assumes entire collectionn is indexed)
-more ${INDEX}/index/1/manifest
-more ${INDEX}/index/2/manifest
-

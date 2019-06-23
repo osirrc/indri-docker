@@ -108,11 +108,11 @@ The results below are computed based on the 150 topics ([topics/topics.701-850.t
 | :one: `--opts out_file_name="gov2.dir1000.title" rule="method:dirichlet,mu:1000" topic_type="title"`         | 0.2800 | 0.4741 | 0.5174 | 0.4353 | 
 | :two: `--opts out_file_name="gov2.dir1000.title.sd" rule="method:dirichlet,mu:1000" topic_type="title" sd="1"`         | 0.2904 | 0.4899 | 0.5463 | 0.4507 |
 | :three: `--opts out_file_name="gov2.dir1000.title.prf" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1"`         | 0.3033 | 0.4833 | 0.5248 | 0.4276 |
+| :four: `--opts out_file_name="gov2.dir1000.title.prf.sd" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1" sd="1"`  | 0.3104 | 0.4863 | 0.5228 | 0.4280 |
+| :five: `--opts out_file_name="gov2.jm0.5.title" rule="method:linear,collectionLambda:0.5" topic_type="title"` | 0.1808 | 0.3086 | 0.3161 | 0.2604 |
 
-| :four: `--opts out_file_name="gov2.dir1000.title.prf.sd" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1" sd="1"`  | 0.2855 | ??? | 0.4474 | 0.4298 |
-
-| :five: `--opts out_file_name="gov2.jm0.5.title" rule="method:linear,collectionLambda:0.5" topic_type="title"` | 0.2242 | ??? | 0.3819 | 0.3689 |
 | :six: `--opts out_file_name="gov2.bm25.title" rule="okapi,k1:1.2,b:0.75" topic_type="title"`            | 0.2338 | ??? | 0.4181 | 0.4041 |
+
 | :seven: `--opts out_file_name="gov2.bm25.title.prf" rule="okapi,k1:1.2,b:0.75" topic_type="title" use_prf="1"`            | 0.2563 | ??? | 0.4012 | 0.3995 |
 | :eight: `--opts out_file_name="gov2.bm25.title+desc" rule="okapi,k1:1.2,b:0.75" topic_type="title+desc"`            | 0.2702 | ??? | 0.4618 | 0.4517 |
 | :nine: `--opts out_file_name="gov2.bm25.title+desc.prf.sd" rule="method:dirichlet,mu:1000" topic_type="title+desc" use_prf="1" sd="1"`  | 0.2971 | ??? | 0.4550 | 0.4448 |
