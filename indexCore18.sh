@@ -8,9 +8,11 @@ COLLECTION_PATH_WRITABLE=$1"-WRITABLE"
 mkdir ${COLLECTION_PATH_WRITABLE}
 
 #first we need to parse the collection
+cwd=$(pwd)
 cd /
 npm install striptags
 nodejs /parseCore18.js ${COLLECTION_PATH}/data/* ${COLLECTION_PATH_WRITABLE}
+cd ${cwd}
 
 #retrieve stopword list (stored in current directory)
 wget http://www.lemurproject.org/stopwords/stoplist.dft
@@ -33,13 +35,3 @@ more index.param
 #start indexing
 echo "Core18 ... Indexing"
 /work/Indri/bin/IndriBuildIndex index.param stoplist.dft
-
-ls /core18
-ls /core18/index
-more /core18/index/0/manifest
-more /core18/index/1/manifest
-more /core18/index/2/manifest
-more /core18/index/3/manifest
-more /core18/index/4/manifest
-more /core18/index/5/manifest
-more /core18/index/6/manifest

@@ -117,6 +117,25 @@ The results below are computed based on the 150 topics ([topics/topics.701-850.t
 | :nine: `--opts out_file_name="gov2.bm25.title+desc.prf.sd" rule="method:dirichlet,mu:1000" topic_type="title+desc" use_prf="1" sd="1"`  | 0.2971 | ??? | 0.4550 | 0.4448 |
 | :keycap_ten: `--opts out_file_name="gov2.dir1000.desc" rule="method:dirichlet,mu:1000" topic_type="desc"`  | 0.2023 | ??? | 0.3703 | 0.3635 |
 
+
+### `core18`
+
+The results below are computed based on the 150 topics ([topics/topics.core18.txt](topics/topics.core18.txt)) available for `gov2`.
+
+|       | MAP    | P@30    | P@10 | NDCG@20    |
+|----------------------------------------------------------------------------------------------------------------------|--------|--------|--------|--------|
+| :one: `--opts out_file_name="gov2.dir1000.title" rule="method:dirichlet,mu:1000" topic_type="title"`         | 0.2800 | 0.4741 | 0.5174 | 0.4353 | 
+| :two: `--opts out_file_name="gov2.dir1000.title.sd" rule="method:dirichlet,mu:1000" topic_type="title" sd="1"`         | 0.2904 | 0.4899 | 0.5463 | 0.4507 |
+| :three: `--opts out_file_name="gov2.dir1000.title.prf" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1"`         | 0.3033 | 0.4833 | 0.5248 | 0.4276 |
+| :four: `--opts out_file_name="gov2.dir1000.title.prf.sd" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1" sd="1"`  | 0.3104 | 0.4863 | 0.5228 | 0.4280 |
+| :five: `--opts out_file_name="gov2.jm0.5.title" rule="method:linear,collectionLambda:0.5" topic_type="title"` | 0.1808 | 0.3086 | 0.3161 | 0.2604 |
+| :six: `--opts out_file_name="gov2.bm25.title" rule="okapi,k1:1.2,b:0.75" topic_type="title"`            | 0.2485 | 0.4486 | 0.4973 | 0.4099 |
+| :seven: `--opts out_file_name="gov2.bm25.title.prf" rule="okapi,k1:1.2,b:0.75" topic_type="title" use_prf="1"`            | 0.2565 | 0.4554 | 0.5000 | 0.3987 |
+| :eight: `--opts out_file_name="gov2.bm25.title+desc" rule="okapi,k1:1.2,b:0.75" topic_type="title+desc"`            | 0.2705 | 0.4749 | 0.5275 | 0.4441 |
+
+| :nine: `--opts out_file_name="gov2.bm25.title+desc.prf.sd" rule="method:dirichlet,mu:1000" topic_type="title+desc" use_prf="1" sd="1"`  | 0.2971 | ??? | 0.4550 | 0.4448 |
+| :keycap_ten: `--opts out_file_name="gov2.dir1000.desc" rule="method:dirichlet,mu:1000" topic_type="desc"`  | 0.2023 | ??? | 0.3703 | 0.3635 |
+
 ## Implementation
 
 The following is a quick breakdown of what happens in each of the scripts in this repo.
