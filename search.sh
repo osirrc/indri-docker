@@ -19,6 +19,8 @@ perl /topicFormatting.pl "${TOPICFILE}" "${TOPICFILE_FORMATTED}" "${TOPICTYPE}" 
 #sanity check - first 10 lines of the new topic file
 echo "${INDEX} ... first few lines of the topic file"
 head ${TOPICFILE_FORMATTED}
+echo "${INDEX} ... last few lines of the topic file"
+tail -n30 ${TOPICFILE_FORMATTED}
 
 #parameter file for searching
 touch search.param
