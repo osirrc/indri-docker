@@ -31,9 +31,6 @@ readInterface.on('line', function(line) {
         }
     })
     indriDoc = indriDoc + "\n</BODY>\n</HTML>\n</DOC>\n";
-    if(outFileCounter==1){
-        console.log(indriDoc);
-    }
 
     try {
         let outFile = outFolder+"/file"+outFileCounter;
