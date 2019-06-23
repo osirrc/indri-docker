@@ -9,7 +9,7 @@ mkdir ${COLLECTION_PATH_WRITABLE}
 
 #first we need to parse the collection
 cd /
-npm install sanitize-html
+npm install striptags
 nodejs /parseCore18.js ${COLLECTION_PATH}/data/* ${COLLECTION_PATH_WRITABLE}
 
 #retrieve stopword list (stored in current directory)

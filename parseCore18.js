@@ -1,7 +1,7 @@
 //@ts-check
 
 "use strict";
-var sanitizeHtml = require('sanitize-html');
+var striptags = require('striptags');
 
 let fileToProcess = process.argv[2]; //file
 let outFolder = process.argv[3]; //folder
@@ -25,10 +25,10 @@ readInterface.on('line', function(line) {
     contents.forEach(function(c){
         if(c!=null && c.hasOwnProperty("type")){
             if( c.type == 'title' || c.subtype == 'paragraph'){
-                indriDoc = indriDoc + " " + sanitizeHtml(c.content);
+                indriDoc = indriDoc + " " + striptags(c.content);
             }
             if( c.type == 'image'){
-                indriDoc = indriDoc + " " + sanitizeHtml(c.fullcaption);
+                indriDoc = indriDoc + " " + striptags(c.fullcaption);
             }
         }
     })
