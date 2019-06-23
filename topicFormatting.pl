@@ -128,7 +128,7 @@ while(<IN>){
     }
     elsif($_=~m/<\/title>/ || $_=~m/<\/desc>/ || $_=~m/<\/narr>/)#core18 specific
     {
-        ;
+        ; 
     }
     elsif($topicType=~m/$inType/){
         $currentQuery = $currentQuery." ".clean($_);
