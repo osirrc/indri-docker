@@ -64,6 +64,7 @@ while(<IN>){
         print OUT "<number>";
         my $qid = $_;
         $_ =~s/.*Number\s*:\s*//;  
+        $_ =~s/<\/num>//; #core18 specific
         $_ =~s/\s+//g;
         print OUT "$_</number>\n";
 
@@ -124,6 +125,10 @@ while(<IN>){
     elsif($_=~m/<narr>/){
         $_=~s/<narr>\s*//;
         $inType = "narr";
+    }
+    elsif($_=~m/<\/title>/ || $_=~m/<\/desc> || $_=~m/<\/narr>)#core18 specific
+    {
+        ;
     }
     elsif($topicType=~m/$inType/){
         $currentQuery = $currentQuery." ".clean($_);
