@@ -17,7 +17,7 @@ readInterface.on('line', function(line) {
     lineCounter++;
 
     let document = JSON.parse(line);
-    let indriDoc = "<DOC>\n<DOCNO>" + document.id + "</DOCNO>\n<DOCHDR></DOCHDR>\n<HTML>\n<BODY>\n";
+    let indriDoc = "<DOC>\n<DOCNO>" + document.id + "</DOCNO>\n<DOCHDR>URL</DOCHDR>\n<HTML>\n<BODY>\n";
     let contents = document.contents; //array
 
     contents.forEach(function(c){
@@ -31,6 +31,9 @@ readInterface.on('line', function(line) {
         }
     })
     indriDoc = indriDoc + "\n</BODY>\n</HTML>\n</DOC>\n";
+    if(outFileCounter==1){
+        console.log(indriDoc);
+    }
 
     try {
         let outFile = outFolder+"/file"+outFileCounter;
