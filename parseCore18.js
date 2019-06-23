@@ -41,6 +41,7 @@ readInterface.on('line', function(line) {
         }
       } catch (err) {
         /* Handle the error */
+            console.log(err);
             throw err;
       }
 });

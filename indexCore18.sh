@@ -11,13 +11,14 @@ mkdir ${COLLECTION_PATH_WRITABLE}
 nodejs /parseCore18.js ${COLLECTION_PATH}/data/* ${COLLECTION_PATH_WRITABLE}
 
 ls -al ${COLLECTION_PATH_WRITABLE}
-echo "---------";
+
 more ${COLLECTION_PATH_WRITABLE}/file1
 echo "++++++++";
 echo "++++++++";
 
 #retrieve stopword list (stored in current directory)
 wget http://www.lemurproject.org/stopwords/stoplist.dft
+echo "Retrieved stopword list"
 
 #create the parameter file for indexing
 touch index.param
