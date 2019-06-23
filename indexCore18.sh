@@ -32,3 +32,12 @@ more index.param
 echo "Core18 ... Indexing"
 /work/Indri/bin/IndriBuildIndex index.param stoplist.dft
 
+ls /core18
+ls /core18/index
+more /core18/index/0/manifest
+more /core18/index/1/manifest
+more /core18/index/2/manifest
+more /core18/index/3/manifest
+more /core18/index/4/manifest
+more /core18/index/5/manifest
+more /core18/index/6/manifest
