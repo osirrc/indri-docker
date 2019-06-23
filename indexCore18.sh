@@ -10,12 +10,6 @@ mkdir ${COLLECTION_PATH_WRITABLE}
 #first we need to parse the collection
 nodejs /parseCore18.js ${COLLECTION_PATH}/data/* ${COLLECTION_PATH_WRITABLE}
 
-ls -al ${COLLECTION_PATH_WRITABLE}
-
-more ${COLLECTION_PATH_WRITABLE}/file1
-echo "++++++++";
-echo "++++++++";
-
 #retrieve stopword list (stored in current directory)
 wget http://www.lemurproject.org/stopwords/stoplist.dft
 echo "Retrieved stopword list"
