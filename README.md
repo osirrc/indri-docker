@@ -111,8 +111,7 @@ The results below are computed based on the 150 topics ([topics/topics.701-850.t
 | :four: `--opts out_file_name="gov2.dir1000.title.prf.sd" rule="method:dirichlet,mu:1000" topic_type="title" use_prf="1" sd="1"`  | 0.3104 | 0.4863 | 0.5228 | 0.4280 |
 | :five: `--opts out_file_name="gov2.jm0.5.title" rule="method:linear,collectionLambda:0.5" topic_type="title"` | 0.1808 | 0.3086 | 0.3161 | 0.2604 |
 | :six: `--opts out_file_name="gov2.bm25.title" rule="okapi,k1:1.2,b:0.75" topic_type="title"`            | 0.2485 | 0.4486 | 0.4973 | 0.4099 |
-
-| :seven: `--opts out_file_name="gov2.bm25.title.prf" rule="okapi,k1:1.2,b:0.75" topic_type="title" use_prf="1"`            | 0.2563 | ??? | 0.4012 | 0.3995 |
+| :seven: `--opts out_file_name="gov2.bm25.title.prf" rule="okapi,k1:1.2,b:0.75" topic_type="title" use_prf="1"`            | 0.2565 | 0.4554 | 0.5000 | 0.3987 |
 
 | :eight: `--opts out_file_name="gov2.bm25.title+desc" rule="okapi,k1:1.2,b:0.75" topic_type="title+desc"`            | 0.2702 | ??? | 0.4618 | 0.4517 |
 | :nine: `--opts out_file_name="gov2.bm25.title+desc.prf.sd" rule="method:dirichlet,mu:1000" topic_type="title+desc" use_prf="1" sd="1"`  | 0.2971 | ??? | 0.4550 | 0.4448 |

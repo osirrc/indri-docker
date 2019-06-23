@@ -126,7 +126,7 @@ while(<IN>){
         $_=~s/<narr>\s*//;
         $inType = "narr";
     }
-    elsif($_=~m/<\/title>/ || $_=~m/<\/desc> || $_=~m/<\/narr>)#core18 specific
+    elsif($_=~m/<\/title>/ || $_=~m/<\/desc>/ || $_=~m/<\/narr>/)#core18 specific
     {
         ;
     }
