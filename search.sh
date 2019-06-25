@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 #Indri is having its own specific file format, not aligned with the TREC topic format.
+#search.sh works for both robust04 and gov2
 
 INDEX="/"$1
 TOPICFILE=$2
@@ -10,13 +11,16 @@ SEARCHRULE=$5
 TOPICTYPE=$6
 TOPICFILE_FORMATTED="/topics-INDRI"
 USEPRF=$7
+SD=$8
 
 #Reformat the topicfile (original TREC format) into one Indri can process
-perl /topicFormatting.pl "${TOPICFILE}" "${TOPICFILE_FORMATTED}" "${TOPICTYPE}" "${SEARCHRULE}"
+perl /topicFormatting.pl "${TOPICFILE}" "${TOPICFILE_FORMATTED}" "${TOPICTYPE}" "${SEARCHRULE}" "${SD}"
 
 #sanity check - first 10 lines of the new topic file
-echo "ROBUST04 ... first few lines of the topic file"
+echo "${INDEX} ... first few lines of the topic file"
 head ${TOPICFILE_FORMATTED}
+echo "${INDEX} ... last few lines of the topic file"
+tail -n30 ${TOPICFILE_FORMATTED}
 
 #parameter file for searching
 touch search.param
@@ -43,5 +47,5 @@ echo "</parameters>" >> search.param
 more search.param
 
 #start searching
-echo "ROBUST04 ... Processing topics"
+echo "${INDEX} ... Processing topics"
 /work/Indri/bin/IndriRunQuery search.param ${TOPICFILE_FORMATTED} >> ${RESFILE}

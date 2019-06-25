@@ -8,7 +8,7 @@ print("Indexing ...")
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--json", type=json.loads, required=True, help="the json input")
-
+ 
 args, unknown = parser.parse_known_args()
 
 # Iterate over the collections
@@ -16,5 +16,9 @@ for collection in args.json["collections"]:
     name, path = collection["name"], collection["path"]
     if name.lower() == "robust04":
         subprocess.run("/indexRobust04.sh {} {} {}".format(collection["path"], collection["name"], collection["format"]), shell=True)
+    elif name.lower() == "gov2":
+        subprocess.run("/indexGOV2.sh {} {} {}".format(collection["path"], collection["name"], collection["format"]), shell=True)
+    elif name.lower() == "core18":
+        subprocess.run("/indexCore18.sh {} {} {}".format(collection["path"], collection["name"], collection["format"]), shell=True)
     else:
         print("Unknown collection: " + name)
