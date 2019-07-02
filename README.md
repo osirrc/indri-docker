@@ -113,7 +113,7 @@ The results below are computed based on the 250 topics of `robust04`.
 | :six: `--opts out_file_name="robust.bm25.title" rule="okapi,k1:1.2,b:0.75" topic_type="title"`            | 0.2338 | 0.2995 | 0.4181 | 0.4041 |
 | :seven: `--opts out_file_name="robust.bm25.title.prf" rule="okapi,k1:1.2,b:0.75" topic_type="title" use_prf="1"`            | 0.2563 | 0.3041 | 0.4012 | 0.3995 |
 | :eight: `--opts out_file_name="robust.bm25.title+desc" rule="okapi,k1:1.2,b:0.75" topic_type="title+desc"`            | 0.2702 | 0.3274 | 0.4618 | 0.4517 |
-| :nine: `--opts out_file_name="robust.bm25.title+desc.prf.sd" rule="method:dirichlet,mu:1000" topic_type="title+desc" use_prf="1" sd="1"`  | 0.2971 | 0.3562 | 0.4550 | 0.4448 |
+| :nine: `--opts out_file_name="robust.dir1000.title+desc.prf.sd" rule="method:dirichlet,mu:1000" topic_type="title+desc" use_prf="1" sd="1"`  | 0.2971 | 0.3562 | 0.4550 | 0.4448 |
 | :keycap_ten: `--opts out_file_name="robust.dir1000.desc" rule="method:dirichlet,mu:1000" topic_type="desc"`  | 0.2023 | 0.2581 | 0.3703 | 0.3635 |
 
 
